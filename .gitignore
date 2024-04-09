@@ -4,3 +4,4 @@
 *.zst
 Models/*
 .ipynb_checkpoints/*
+stockfish/*
