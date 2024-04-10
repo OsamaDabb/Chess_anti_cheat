@@ -122,7 +122,7 @@ def generate_data(path,N=None, get_attacks=True, skip_games=0, model = None):
             boards.append(b)
             fens.append(board_fen)
             meta.append(m)
-            elos.append(pgn_game.headers["WhiteElo"])
+            elos.append(int(pgn_game.headers["WhiteElo"]))
             moves.append(move)
             if model is not None:
                 ai_moves.append(model(board))
