@@ -5,3 +5,5 @@
 Models/*
 .ipynb_checkpoints/*
 stockfish/*
+Results/*
+Data/*

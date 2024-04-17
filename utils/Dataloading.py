@@ -52,6 +52,15 @@ def fen_to_board(fen):
     #meta_data = np.array([second_split[1] == 'w', 'K' in second_split[2], 'Q' in second_split[2],
     #            'k' in second_split[2], 'q' in second_split[2], second_split[4]], dtype = int)
     meta_data = white_turn
+    fen_board = chess.Board(fen)
+    attacks = np.zeros((2,64))
+    is_white_turn = 1 if  white_turn else 0
+    for i in range(64):
+        if fen_board.is_attacked_by(chess.WHITE, i):
+            attacks[(1-is_white_turn),i] = 1
+        if fen_board.is_attacked_by(chess.BLACK, i):
+            attacks[is_white_turn,i] = 1
+    board = np.concatenate((board, attacks.reshape(2,8,8)), axis=0)
 
     return (board, meta_data)
 
