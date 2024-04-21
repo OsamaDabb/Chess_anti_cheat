@@ -1,2 +1,0 @@
-Epoch 54 with g_loss: 0.012177055214498347 and d_loss: 0.0
-Epoch: 54, g_acc=0.0, d_acc_f=0.0, d_acc_r=0.999000072479248
