@@ -1,1 +1,3 @@
 # ChessGAN project
+
+Paper:
