@@ -5,6 +5,9 @@ import chess
 from .Game_playing import *
 
 def fen_to_board(fen):
+    """
+    Same as fen_to_board in Dataloading.py
+    """
 
     mapper = {'p' : 6, 'n': 7, 'b': 8, 'r': 9, 'q': 10, 'k': 11,
               'P' : 0, 'N': 1, 'B': 2, 'R': 3, 'Q': 4, 'K': 5}
@@ -54,6 +57,12 @@ def fen_to_board(fen):
     return (board, meta_data)
 
 def network_agent(board, network):
+    """
+    function that uses network to generate move output given board input.
+    :param board: chess.Board
+    :param network: nn.Module 768x1 -> 128x1
+    :return: chess.Move
+    """
 
     min_moves = []
     ila_moves = []
@@ -96,11 +105,10 @@ def network_agent_prob(board, network):
     """
     Given a board and a network, selects the move probabilistically
     based off the agents outputs.
-    Inputs:
-    board: chess.Board
-    network: func chess.board -> 1x64 probability from tens, 1x64 probability to tens
-    Returns:
-    chess.Move object
+
+    :param board: chess.Board
+    :param network: nn.Module 768x1 -> 128x1
+    Returns: chess.Move
     """
     legal_moves = list(board.generate_legal_moves())
 
@@ -141,6 +149,12 @@ def network_agent_prob(board, network):
 
 
 def network_agent_conv(board, network):
+    """
+    Similar to network_agent but for convolutional network
+    :param board: chess.Board
+    :param network: nn.Module 12x8x8 -> 128x1
+    :return:
+    """
 
     min_moves = []
     ila_moves = []
@@ -185,7 +199,7 @@ def network_agent_prob_conv(board, network, with_attacks=True):
     based off the agents outputs.
     Inputs:
     board: chess.Board
-    network: func chess.board -> 1x64 probability from tens, 1x64 probability to tens
+    network: nn.Module chess.board -> 128x1
     Returns:
     chess.Move object
     """

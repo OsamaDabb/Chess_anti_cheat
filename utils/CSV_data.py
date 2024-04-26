@@ -9,6 +9,10 @@ import pandas as pd
 from .Dataloading import *
 
 def save_to_csv(file_path, N=250_000):
+    """
+    Saves data from lichess open database png to csv
+
+    """
     boards, meta, elos, moves, _, _ = generate_data(file_path, N=N)
     
     with open("../Data/lichess_games.csv","w") as f:
@@ -18,6 +22,14 @@ def save_to_csv(file_path, N=250_000):
             
             
 def load_from_csv(file_path, N, skip=0):
+    """
+    Loads data from CSV file
+
+    :param file_path: path to csv
+    :param N: number of samples to load
+    :param skip: number of samples to skip before loading
+    :return: bitboards, metadata, player elos, move vectors
+    """
     
     boards = np.zeros((N, 896))
     
@@ -55,6 +67,9 @@ def load_from_csv(file_path, N, skip=0):
             
             
 def fast_read_csv(file_path, N, skip=0):
+    """
+    Faster version of read_csv
+    """
     
     data = pd.read_csv(file_path, chunksize=899*32)
     

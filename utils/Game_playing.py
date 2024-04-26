@@ -1,3 +1,8 @@
+"""
+File responsible for chess game-playing functions, including visualizing games, and competing differing models to
+measure W/L etc.
+"""
+
 import chess
 import chess.svg
 import numpy as np
@@ -9,10 +14,16 @@ from IPython.display import display, SVG
 from tqdm import tqdm
 
 def play_game(agent_1, agent_2, board = None, fen = True, show_boards = False):
-    '''
-    Agent_1 is white.
-    Returns 1 if white won, 0.5 for a draw and 0 for black victory
-    '''
+    """
+    Plays game between agent_1 (white) and agent_2 (black), that begins at board.
+
+    :param agent_1: function: (chess.Board -> chess.Move)
+    :param agent_2: function (chess.Board -> chess.Move)
+    :param board: String, FEN of starting board, defaults to initial starting board
+    :param fen: whether to return the game FENs
+    :param show_boards: whether to display the game if played between two AIs
+    :return: 1 if white won, 0 if black won, else 0.5 & potentially game FENs
+    """
     if board == None:
       board = chess.Board()
 
@@ -47,6 +58,12 @@ def play_game(agent_1, agent_2, board = None, fen = True, show_boards = False):
 random_agent = lambda x : random.choice(list(x.generate_legal_moves()))
 
 def human_agent(board):
+    """
+    agent that allows human to play and visualize board, expects moves in the UCI notation
+
+    :param board: chess.Board
+    :return: chess.Move
+    """
 
     if board.fen() == chess.STARTING_FEN:
 
@@ -71,8 +88,8 @@ def human_agent(board):
 
 def test_against(agent,opponent=random_agent, N=500, play_both=True, unique=False):
     """
-    Given an agent and a number of games N, calculates the
-    ROWR (random opponent win rate) of that agent.
+    Given two agents and a number of games N, calculates the
+    W/D/L of that agent. Defaults to random_agent as opponent
     """
     wins = 0
     draws = 0
@@ -112,10 +129,9 @@ index_map = torch.tensor([convert_to_black(i) for i in range(64)])
 
 
 def play_unique_game(agent_1, agent_2, board = None, fen = True, show_boards = False, N=4):
-    '''
-    Agent_1 is white.
-    Returns 1 if white won, 0.5 for a draw and 0 for black victory
-    '''
+    """
+    Like play_game, except begins the board after N random moves for unique game
+    """
     if board == None:
       board = chess.Board()
     

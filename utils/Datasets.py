@@ -1,6 +1,10 @@
+"""
+Store of different dataset types used for training
+"""
+
 import torch
 from torch.utils.data import DataLoader, Dataset
-import numpy as np
+
 
 if torch.cuda.is_available():
     # Set default tensor type to CUDA tensors

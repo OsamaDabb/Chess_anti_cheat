@@ -13,6 +13,13 @@ from .Dataloading import fen_to_board
 import csv
 
 def generate_puzzles(N_puzzles=1_000, first_move=False):
+    """
+    generates puzzles for model evaluation, uses lichess_db_puzzles downloaded from their database
+
+    :param N_puzzles
+    :param first_move: whether to store the first move or the full sequence of moves
+    :return: puzzle_data
+    """
 
     FENs = []
     boards = []
@@ -47,6 +54,11 @@ def generate_puzzles(N_puzzles=1_000, first_move=False):
     return FENs, moves, ratings
             
 def shuffle_puzzles(puzzles):
+    """
+    short function shuffling the order of the given puzzles
+    :param puzzles
+    :return: puzzles
+    """
     
     FENs, moves, ratings = puzzles
     
@@ -57,6 +69,14 @@ def shuffle_puzzles(puzzles):
     return list(FENs), list(moves), list(ratings)
             
 def evaluate_on_puzzles(model, puzzles, max_rating=2500):
+    """
+    evaluates the given model on given set of puzzles. Returns accuracy % and rudimentary ranking to track success
+
+    :param model: function chess.Board -> chess.Move
+    :param puzzles
+    :param max_rating: maximum rating of puzzle to evaluate with
+    :return: accuracy, ranking
+    """
     
     accuracy = 0
     
@@ -101,6 +121,14 @@ def evaluate_on_puzzles(model, puzzles, max_rating=2500):
         
         
 def visualize_puzzles(model, puzzles, max_rating=2500):
+    """
+    Evaluate model effectiveness of puzzles while also visualizing them to console.
+
+    :param model: function chess.Board -> chess.Move
+    :param puzzles
+    :param max_rating: max rating for evaluation
+    :return: None
+    """
     
     N = len(puzzles[0])
     
@@ -155,12 +183,3 @@ def visualize_puzzles(model, puzzles, max_rating=2500):
             else:
                 
                 break
-    
-        
-        
-        
-        
-        
-        
-        
-    
