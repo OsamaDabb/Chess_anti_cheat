@@ -30,4 +30,4 @@ Install simply by cloning the repo
 git clone https://github.com/OsamaDabb/Chess_anti_cheat.git
 ```
 From there, code involving the training of the baseline model can be found in "behavioural_cloning.ipynb", while 
-"main.ipynb" contains all work relating to GAN training and evaluation.
+"GAN architectures.ipynb" contains all work relating to GAN training and evaluation.
