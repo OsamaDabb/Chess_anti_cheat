@@ -20,7 +20,8 @@ This project's dependencies can be installed using conda by:
 ```sh
 conda create --name <env> --file requirements.txt
 ```
-It also uses data from the lichess open-database which can be found [here](https://database.lichess.org/)
+It also uses data from the lichess open-database which can be found [here](https://database.lichess.org/), and the use of an external
+engine such as stockfish, whose installation guide can be found [here](https://stockfishchess.org/download/)
 
 ### Installation & Use
 
