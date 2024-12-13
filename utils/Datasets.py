@@ -69,6 +69,7 @@ class PiecewiseData(Dataset):
 
         return self.bitboards[idx], self.pieces[idx]
 
+
 class ChessDataConv(Dataset):
 
     def __init__(self, bitboards, white_turn, moves):

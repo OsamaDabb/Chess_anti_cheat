@@ -12,6 +12,11 @@ this training did not generalize to all human or AI play.
 However, we did find that the use of this discriminator aided in the training of a generator which played 
 high-quality chess with a move distribution closely resembling that of human players.
 
+You can find a report that dives into technical details and experimental results here: [Chess Anti-cheat Detection Using an Adversarial Network
+Framework](files/dabbousi_chess_anti_cheat.pdf)
+For a more high-level description, find a recording of our capstone presentation on the project here: 
+[![ChessGAN Capstone Presentation](https://youtu.be/JZktvaszsrc)](https://youtu.be/JZktvaszsrc)
+
 ## Getting Started
 
 ### Prerequisites

@@ -1,3 +1,5 @@
+import time
+
 import chess
 import chess.svg
 
@@ -27,7 +29,7 @@ def generate_puzzles(N_puzzles=1_000, first_move=False):
     moves = []
     ratings = []
     
-    with open("../Data/lichess_db_puzzle.csv", "r") as f:
+    with open("Data/lichess_db_puzzle.csv", "r") as f:
         reader = csv.reader(f)
         row = next(reader, None)
         
@@ -148,10 +150,10 @@ def visualize_puzzles(model, puzzles, max_rating=2500):
         
         arrow = chess.svg.Arrow(moves[1].from_square, moves[1].to_square)
         
-        board_img = chess.svg.board(board, orientation = board.turn, size=300, arrows = [arrow])
+        board_img = chess.svg.board(board, orientation=board.turn, size=300, arrows = [arrow])
         display(SVG(board_img))
         
-        input("")
+        time.sleep(1)
                         
         for ind, move in enumerate(moves[1::2]):
             
@@ -161,11 +163,11 @@ def visualize_puzzles(model, puzzles, max_rating=2500):
             board_img = chess.svg.board(board, orientation = not board.turn, size=300, lastmove=network_move, arrows = [arrow])
             display(SVG(board_img)) 
             
-            input("")
+            if input("") != "":
+                return
             
             if network_move == move:
-                
-                
+
                 if len(moves) <= 2*ind + 2:
                     break
                 
@@ -178,8 +180,7 @@ def visualize_puzzles(model, puzzles, max_rating=2500):
                     display(SVG(board_img))
                 
                     input("")
-                    
-            
+
             else:
                 
                 break
